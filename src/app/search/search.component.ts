@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SpotifyService} from '../spotify.service';
+import {SpotifyAPIService} from '../spotify.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ export class SearchComponent implements OnInit {
   
   searchStr:string;
 
-  constructor(private _spotifyService:SpotifyService) { }
+  constructor(private _spotifyService:SpotifyAPIService) { }
 
   ngOnInit() {
   }

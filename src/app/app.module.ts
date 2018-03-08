@@ -9,8 +9,8 @@ import {RouterModule} from '@angular/router';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { SpotifyService } from './spotify.service';
-
+import { SpotifyAPIService } from './spotify.service';
+import { HttpModule } from '@angular/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import { SpotifyService } from './spotify.service';
     FormsModule,
     HttpClientModule
   ],
-  providers: [SpotifyService],
+  providers: [SpotifyAPIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/do'
+import 'rxjs/add/operator/publishLast'
 
 @Injectable()
 export class SpotifyAPIService {
-  client_id = "[YOUR API KEY]";
-  client_secret = "[YOUR SECRET KEY]";
+  client_id = "0663297f90e8461e858b875704a8e2cc";
+  client_secret = "93cd5b96e3a3470b9061eac5d7227c0d";
 
   private accessToken: any;
   private tokenType: string;
@@ -12,8 +15,8 @@ export class SpotifyAPIService {
   constructor(private http: Http) { }
 
   login() {
-    // let authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
-    let authorizationTokenUrl = `/api/token`;
+    let authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
+    // let authorizationTokenUrl = `/api/token`;
 
     let header = new Headers();
     header.append('Authorization', 'Basic  ' + btoa(this.client_id + ':' + this.client_secret));
@@ -39,6 +42,14 @@ export class SpotifyAPIService {
       .refCount()
   }
 
+  searchArtist(title: string) {
+    const options = this.getOptions();
+    return this.http.get(`https://api.spotify.com/v1/search?query=${title}&type=artist&market=US&offset=0&limit=20`, options)
+      .map(res => res.json())
+      .publishLast()
+      .refCount()
+  }
+
   loadAlbum(id) {
     const options = this.getOptions();
     return this.http.get(`https://api.spotify.com/v1/albums/${id}`, options)
@@ -49,8 +60,8 @@ export class SpotifyAPIService {
 
 
   private getOptions() {
-    console.log(this.accessToken);
-    console.log(this.tokenType);
+    ///////////////////// console.log(this.accessToken);
+    ///////////////////// console.log(this.tokenType);
 
     let header = new Headers();
     header.append('Authorization', this.tokenType + ' ' + this.accessToken);

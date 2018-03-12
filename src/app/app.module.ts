@@ -25,6 +25,7 @@ import { HttpModule } from '@angular/http';
       {path:'about',component:AboutComponent},
       {path:'search',component:SearchComponent},
     ]),
+    HttpModule,
     FormsModule,
     HttpClientModule
   ],

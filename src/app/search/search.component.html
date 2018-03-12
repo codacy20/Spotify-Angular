@@ -5,3 +5,21 @@
     <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="searchMusic()" class="form-control" placeholder="Search on...">
   </div>
 </form>
+
+<div ng-if="searcRes">
+  <div *ngFor="let res of searchRes">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="search-res card text-white bg-dark mb-3">
+          <div class="card-body">
+            <h4><a href="">{{res.name}}</a></h4>
+            <div class="card-text" *ngIf="res.genres?.length > 0">
+              <strong>Genres: </strong>
+              <span *ngFor="let item of res.genres">{{item}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

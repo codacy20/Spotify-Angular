@@ -12,6 +12,17 @@
     uri: string;
   }
 
+  export class Artist2 {
+    href: string;
+    id: string;
+    name: string;
+    type: string;
+    uri: string;
+    genres:any;
+    albums:Album[]
+  }
+
+
   export interface Copyright {
     text: string;
     type: string;

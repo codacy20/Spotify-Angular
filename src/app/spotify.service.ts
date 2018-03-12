@@ -58,7 +58,21 @@ export class SpotifyAPIService {
       .refCount()
   }
 
+  getArtist(id: string) {
+    const options = this.getOptions();
+    return this.http.get(`https://api.spotify.com/v1/artists/${id}`, options)
+      .map(res => res.json())
+      .publishLast()
+      .refCount()
+  }
 
+  getAlbums(id: string) {
+    const options = this.getOptions();
+    return this.http.get(`https://api.spotify.com/v1/artists/${id}/albums?album_type=single,album&market=NL`, options)
+      .map(res => res.json())
+      .publishLast()
+      .refCount()
+  }
   private getOptions() {
     ///////////////////// console.log(this.accessToken);
     ///////////////////// console.log(this.tokenType);

@@ -11,19 +11,25 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SpotifyAPIService } from './spotify.service';
 import { HttpModule } from '@angular/http';
+import { ArtistComponent } from './artist/artist.component';
+import { AlbumComponent } from './album/album.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavBarComponent,
     AboutComponent,
-    SearchComponent
+    SearchComponent,
+    ArtistComponent,
+    AlbumComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot([
       {path:'about',component:AboutComponent},
       {path:'search',component:SearchComponent},
+      {path:'artist/:id',component:ArtistComponent},
+      {path:'album/:id',component:AlbumComponent}
     ]),
     HttpModule,
     FormsModule,

@@ -26,6 +26,7 @@ import { AlbumComponent } from './album/album.component';
   imports: [
     BrowserModule,
     RouterModule.forRoot([
+      {path:'',redirectTo:'/search',pathMatch:'full'},
       {path:'about',component:AboutComponent},
       {path:'search',component:SearchComponent},
       {path:'artist/:id',component:ArtistComponent},

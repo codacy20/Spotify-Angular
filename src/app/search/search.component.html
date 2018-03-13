@@ -1,21 +1,26 @@
-<h1>Suggest a Song!</h1>
-<p class="lead">I know your music taste is great. Add a song below and follow the playlist if you like.</p>
-<form>
-  <div class="form-group">
-    <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="searchMusic()" class="form-control" placeholder="Search on..." autocomplete="off">
-  </div>
-</form>
+<div class="container">
+  <h1>Suggest a Song!</h1>
+  <p class="lead">We know your music taste is great. Look for your favorate artist below and follow add/follow the playlist if you like!</p>
+  <form>
+    <div class="form-group">
+      <input type="text" name="searchStr" [(ngModel)]="searchStr" (keyup)="searchMusic()" class="form-control" placeholder="i.e. Eminem"
+        autocomplete="off">
+    </div>
+  </form>
 
-<div ng-if="searcRes">
-  <div *ngFor="let res of searchRes">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="search-res card text-white bg-dark mb-3">
-          <div class="card-body">
-            <h4><a [routerLink]="['/artist',res.id]" >{{res.name}}</a></h4>
-            <div class="card-text" *ngIf="res.genres?.length > 0">
-              <strong>Genres: </strong>
-              <span *ngFor="let item of res.genres">{{item}}</span>
+  <div ng-if="searcRes">
+    <div *ngFor="let res of searchRes">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="search-res card text-white bg-dark mb-3">
+            <div class="card-body">
+              <h4>
+                <a [routerLink]="['/artist',res.id]">{{res.name}}</a>
+              </h4>
+              <div class="card-text" *ngIf="res.genres?.length > 0">
+                <strong>Genres: </strong>
+                <span *ngFor="let item of res.genres">{{item}}</span>
+              </div>
             </div>
           </div>
         </div>

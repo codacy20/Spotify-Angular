@@ -15,7 +15,7 @@ export class SpotifyAPIService {
   constructor(private http: Http) { }
 
   login() {
-    let authorizationTokenUrl = `https://accounts.spotify.com/api/token`;
+    let authorizationTokenUrl = `https://myproxi.herokuapp.com/`+`https://accounts.spotify.com/api/token`;
     // let authorizationTokenUrl = `/api/token`;
 
     let header = new Headers();
@@ -36,7 +36,7 @@ export class SpotifyAPIService {
 
   searchAlbums(title: string) {
     const options = this.getOptions();
-    return this.http.get(`https://api.spotify.com/v1/search?query=${title}&type=album`, options)
+    return this.http.get(`https://myproxi.herokuapp.com/`+`https://api.spotify.com/v1/search?query=${title}&type=album`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()
@@ -44,7 +44,7 @@ export class SpotifyAPIService {
 
   searchArtist(title: string) {
     const options = this.getOptions();
-    return this.http.get(`https://api.spotify.com/v1/search?query=${title}&type=artist&market=US&offset=0&limit=20`, options)
+    return this.http.get(`https://myproxi.herokuapp.com/`+`https://api.spotify.com/v1/search?query=${title}&type=artist&market=US&offset=0&limit=20`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()
@@ -52,7 +52,7 @@ export class SpotifyAPIService {
 
   loadAlbum(id) {
     const options = this.getOptions();
-    return this.http.get(`https://api.spotify.com/v1/albums/${id}`, options)
+    return this.http.get(`https://myproxi.herokuapp.com/`+`https://api.spotify.com/v1/albums/${id}`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()
@@ -60,7 +60,7 @@ export class SpotifyAPIService {
 
   getArtist(id: string) {
     const options = this.getOptions();
-    return this.http.get(`https://api.spotify.com/v1/artists/${id}`, options)
+    return this.http.get(`https://myproxi.herokuapp.com/`+`https://api.spotify.com/v1/artists/${id}`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()
@@ -68,7 +68,7 @@ export class SpotifyAPIService {
 
   getAlbums(id: string) {
     const options = this.getOptions();
-    return this.http.get(`https://api.spotify.com/v1/artists/${id}/albums?album_type=single,album&market=NL`, options)
+    return this.http.get(`https://myproxi.herokuapp.com/`+`https://api.spotify.com/v1/artists/${id}/albums?album_type=single,album&market=NL`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()

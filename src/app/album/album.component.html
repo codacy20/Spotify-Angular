@@ -25,7 +25,10 @@
         <div class="search-res card text-white bg-dark mb-3">
           <div class="card-body">
             <h5>{{track.track_number}} - {{track.name}}</h5>
-            <a href="{{track.preview_url}}" target="_blank">Preview Track</a>
+            <a href="{{track.preview_url}}" target="_blank" *ngIf="track.preview_url">Preview Track</a>
+            <span *ngIf="!track.preview_url">No Preview Track Available instead
+              <a href="{{track.external_urls.spotify}}" target="_blank">Open it on Spotify</a>
+            </span>
           </div>
         </div>
       </div>

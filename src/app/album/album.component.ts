@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgModule } from '@angular/core';
 import { SpotifyAPIService } from '../spotify.service';
 import { ActivatedRoute } from '@angular/router';
 import { Album } from '../album';

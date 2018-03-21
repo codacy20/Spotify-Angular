@@ -14,7 +14,7 @@ import { HttpModule } from '@angular/http';
 import { ArtistComponent } from './artist/artist.component';
 import { AlbumComponent } from './album/album.component';
 import { DialogComponent, DialogOverviewExampleDialog } from './dialog/dialog.component';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatFormFieldModule, MatInputModule,MatButtonModule } from '@angular/material';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatFormFieldModule, MatInputModule,MatButtonModule,MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -45,7 +45,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatListModule
   ],
   entryComponents: [DialogComponent, DialogOverviewExampleDialog],
   providers: [

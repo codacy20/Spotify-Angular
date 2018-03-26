@@ -26,8 +26,8 @@
           <div class="card-body">
             <h5>{{track.track_number}} - {{track.name}}</h5>
             <span *ngIf="track.preview_url">
-                <!-- <dialog-overview></dialog-overview> -->
-                <a href="{{track.preview_url}}" target="_blank">Preview Track</a>
+                <dialog-overview [preview_url]='track.preview_url'></dialog-overview>
+                <!-- <a href="{{track.preview_url}}" target="_blank">Preview Track</a> -->
             </span>
             <span *ngIf="!track.preview_url">No Preview Track Available instead
               <a href="{{track.external_urls.spotify}}" target="_blank">Open it on Spotify</a>

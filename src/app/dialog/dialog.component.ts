@@ -1,4 +1,4 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, Input} from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA ,MatFormFieldModule, MatInputModule } from '@angular/material';
 
 
@@ -11,18 +11,22 @@ export class DialogComponent{
 
   animal: string;
   name: string;
+  @Input() preview_url:string;
 
   constructor(public dialog: MatDialog) {}
 
   openDialog(): void {
+
+    console.log(this.preview_url);
+
     let dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: { name: this.name, animal: this.animal }
+      width: '350px',
+      data: { preview_url: this.preview_url }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      this.animal = result;
+      // this.animal = result;
     });
   }
 
@@ -31,6 +35,7 @@ export class DialogComponent{
 @Component({
   selector: 'dialogItSelf',
   templateUrl: 'dialogItSelf.html',
+  styleUrls: ['dialog.component.css']
 })
 export class DialogOverviewExampleDialog {
 

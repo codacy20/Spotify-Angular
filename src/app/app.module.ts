@@ -37,7 +37,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: 'search', component: SearchComponent },
       { path: 'artist/:id', component: ArtistComponent },
       { path: 'album/:id', component: AlbumComponent }
-    ]),
+    ],{useHash: true}),
     HttpModule,
     FormsModule,
     HttpClientModule,

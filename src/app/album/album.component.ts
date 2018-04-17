@@ -10,19 +10,19 @@ import { Album } from '../album';
 })
 export class AlbumComponent implements OnInit {
 
-  album:Album;
-  id:string;
+  album: Album;
+  id: string;
 
 
-  constructor(private _spotifyService:SpotifyAPIService,private _route:ActivatedRoute) { }
+  constructor(private _spotifyService: SpotifyAPIService, private _route: ActivatedRoute) { }
 
   ngOnInit() {
 
     this.id = this._route.snapshot.params.id;
     this._spotifyService.login()
-    .subscribe(() => {
-      this.getAlbum(this.id);
-    });
+      .subscribe(() => {
+        this.getAlbum(this.id);
+      });
   }
 
   getAlbum(id: string) {
@@ -32,4 +32,21 @@ export class AlbumComponent implements OnInit {
         console.log(this.album);
       });
   }
+
+  addSongInit(id: string) {
+
+    this._spotifyService.login()
+      .subscribe(() => {
+        this.addSongs(id);
+      });
+  }
+
+  addSongs(id:string){
+
+    this._spotifyService.addSongs(id)
+    .subscribe(res => {
+      console.log(res);
+    });
+  }
+
 }

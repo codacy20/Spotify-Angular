@@ -87,7 +87,7 @@ export class SpotifyAPIService {
   addSongs(id: string){
 
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/users/${this.user_id}/playlists/${this.playlist_id}/tracks?position=0&uris=spotify%3Atrack%3A${id}`, options)
+    return this.http.post(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/users/${this.user_id}/playlists/${this.playlist_id}/tracks?position=0&uris=spotify%3Atrack%3A${id}`, options)
       .map(res => res.json())
       .publishLast()
       .refCount()

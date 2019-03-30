@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { Http, RequestOptions, Headers } from '@angular/http';
-import 'rxjs/add/operator/map'
-import 'rxjs/add/operator/do'
-import 'rxjs/add/operator/publishLast'
+import { Injectable } from "@angular/core";
+import { Http, RequestOptions, Headers } from "@angular/http";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/do";
+import "rxjs/add/operator/publishLast";
 
 @Injectable()
 export class SpotifyAPIService {
@@ -14,82 +14,120 @@ export class SpotifyAPIService {
   private accessToken: any;
   private tokenType: string;
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) {}
 
   login() {
-    let authorizationTokenUrl = `https://myproxi.herokuapp.com/` + `https://accounts.spotify.com/api/token`;
+    let authorizationTokenUrl =
+      `https://myproxi.herokuapp.com/` +
+      `https://accounts.spotify.com/api/token`;
     // let authorizationTokenUrl = `/api/token`;
 
     let header = new Headers();
-    header.append('Authorization', 'Basic  ' + btoa(this.client_id + ':' + this.client_secret));
-    header.append('Content-Type', 'application/x-www-form-urlencoded;');
+    header.append(
+      "Authorization",
+      "Basic  " + btoa(this.client_id + ":" + this.client_secret)
+    );
+    header.append("Content-Type", "application/x-www-form-urlencoded;");
 
     let options = new RequestOptions({ headers: header });
-    let body = 'grant_type=client_credentials';
+    let body = "grant_type=client_credentials";
 
-
-    return this.http.post(authorizationTokenUrl, body, options)
+    return this.http
+      .post(authorizationTokenUrl, body, options)
       .map(data => data.json())
-      .do(token => {
-        this.accessToken = token.access_token;
-        this.tokenType = token.token_type;
-      }, error => console.log(error));
+      .do(
+        token => {
+          this.accessToken = token.access_token;
+          this.tokenType = token.token_type;
+        },
+        error => console.log(error)
+      );
   }
 
   searchAlbums(title: string) {
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/search?query=${title}&type=album`, options)
+    return this.http
+      .get(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/search?query=${title}&type=album`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
 
   searchArtist(title: string) {
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/search?query=${title}&type=artist&market=US&offset=0&limit=20`, options)
+    return this.http
+      .get(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/search?query=${title}&type=artist&market=US&offset=0&limit=20`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
 
   loadAlbum(id) {
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/albums/${id}`, options)
+    return this.http
+      .get(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/albums/${id}`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
 
   getArtist(id: string) {
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/artists/${id}`, options)
+    return this.http
+      .get(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/artists/${id}`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
 
   getAlbums(id: string) {
     const options = this.getOptions();
-    return this.http.get(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/artists/${id}/albums?album_type=single,album&market=NL`, options)
+    return this.http
+      .get(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/artists/${id}/albums?album_type=single,album&market=NL`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
   private getOptions() {
-
     let header = new Headers();
-    header.append('Authorization', this.tokenType + ' ' + this.accessToken);
+    header.append("Authorization", this.tokenType + " " + this.accessToken);
     let options = new RequestOptions({ headers: header });
 
     return options;
   }
 
-  addSongs(id: string){
-
+  addSongs(id: string) {
     const options = this.getOptions();
-    return this.http.post(`https://myproxi.herokuapp.com/` + `https://api.spotify.com/v1/users/${this.user_id}/playlists/${this.playlist_id}/tracks?position=0&uris=spotify%3Atrack%3A${id}`, options)
+    return this.http
+      .post(
+        `https://myproxi.herokuapp.com/` +
+          `https://api.spotify.com/v1/users/${this.user_id}/playlists/${
+            this.playlist_id
+          }/tracks?position=0&uris=spotify%3Atrack%3A${id}`,
+        options
+      )
       .map(res => res.json())
       .publishLast()
-      .refCount()
+      .refCount();
   }
 }
